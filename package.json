@@ -6,7 +6,17 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "------------------": "---------------",
+    "bundle:elements": "npm run _build:elements && npm run _pack:elements",
+    "bundle:elements2": "npm run _build:elements2 && npm run _pack:elements2",
+    "_build:elements": "ng build --named-chunks=true --project elements --output-hashing none",
+    "_build:elements2": "ng build --named-chunks=true --project elements2 --output-hashing none",
+    "_pack:elements": "node config/concatenate-elements.js elements",
+    "_pack:elements2": "node config/concatenate-elements.js elements2",
+    "-------------------": "--------------",
+    "start:shell": "npm run bundle:elements && npm run bundle:elements2 && concurrently --kill-others --names \"SHELL\" \"npm run _start:shell-ng\" \"npx angular-http-server --cors --path dist/ --rootFile=elements/index.html\"",
+    "_start:shell-ng": "ng serve shell --proxy-config=config/proxy.shell.json"
   },
   "private": true,
   "dependencies": {
@@ -14,6 +24,7 @@
     "@angular/common": "~13.0.0",
     "@angular/compiler": "~13.0.0",
     "@angular/core": "~13.0.0",
+    "@angular/elements": "^13.0.1",
     "@angular/forms": "~13.0.0",
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
@@ -23,10 +34,15 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~13.0.2",
     "@angular/cli": "~13.0.1",
     "@angular/compiler-cli": "~13.0.0",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
+    "angular-http-server": "^1.10.0",
+    "concat": "^1.0.3",
+    "concurrently": "^6.3.0",
+    "fs-extra": "^10.0.0",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

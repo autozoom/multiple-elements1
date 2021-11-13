@@ -1,0 +1,17 @@
+{
+  "/elements/*": {
+    "target": "http://127.0.0.1:8080/",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/elements2/*": {
+    "target": "http://127.0.0.1:8080/",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/projects_microfe_*.js": {
+    "target": "http://127.0.0.1:8080/elements/",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}
