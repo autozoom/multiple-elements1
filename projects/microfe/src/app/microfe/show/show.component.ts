@@ -10,7 +10,9 @@ import { StoreService } from '../store.service';
 export class ShowComponent implements OnInit {
   @Input() valore!: number;
 
-  constructor(private _service: StoreService) {}
+  constructor(private _service: StoreService) {
+    console.log('ShowComponent constructor');
+  }
 
   ngOnInit(): void {
     this._service.setValue('valore' + this.valore);

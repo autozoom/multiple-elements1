@@ -16,9 +16,5 @@ export class AppModule implements DoBootstrap {
       injector: this._injector,
     });
     customElements.define('show-root', element1);
-    const element2 = createCustomElement(ShowComponent, {
-      injector: this._injector,
-    });
-    customElements.define('show-root-2', element2);
   }
 }
