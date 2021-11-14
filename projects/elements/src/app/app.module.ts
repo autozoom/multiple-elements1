@@ -1,15 +1,16 @@
 import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
-import { MicrofeModule } from 'projects/microfe/src/app/microfe/microfe.module';
 import { ShowComponent } from 'projects/microfe/src/app/microfe/show/show.component';
 
 @NgModule({
-  imports: [BrowserModule, MicrofeModule],
+  imports: [BrowserModule],
   providers: [],
 })
 export class AppModule implements DoBootstrap {
-  constructor(private _injector: Injector) {}
+  constructor(private _injector: Injector) {
+    console.log('Elements AppModule constructor');
+  }
 
   ngDoBootstrap() {
     const element1 = createCustomElement(ShowComponent, {
